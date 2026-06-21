@@ -1,0 +1,66 @@
+# ---- Secrets / environment ----
+.env
+.env.*
+*.env.*
+
+!.env.example
+*.pem
+*.key
+
+# ---- Virtual environments (any depth) ----
+venv/
+*venv/
+
+.venv/
+env/
+ENV/
+**/venv/
+**/.venv/
+
+# ---- Python bytecode / caches ----
+__pycache__/
+*__pycache__/
+
+*.py[cod]
+*$py.class
+*.so
+
+# ---- Build / packaging artifacts ----
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# ---- Test / lint / type caches ----
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ---- App-specific temp output ----
+mock_data_outputs/
+*.log
+tmp/
+.tmp/
+
+# ---- Model / HF caches (if ever placed in-tree) ----
+.cache/
+.huggingface/
+
+# ---- Editors / IDEs ----
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ---- macOS / OS junk ----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
