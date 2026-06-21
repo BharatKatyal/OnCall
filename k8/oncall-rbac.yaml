@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: oncall-readonly
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: oncall-readonly-view
+subjects:
+  - kind: ServiceAccount
+    name: oncall-readonly
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: view          # built-in read-only, excludes Secrets
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: oncall-readonly-extra
+rules:
+  - apiGroups: [""]
+    resources: ["nodes", "namespaces"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["metrics.k8s.io"]
+    resources: ["*"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: oncall-readonly-extra
+subjects:
+  - kind: ServiceAccount
+    name: oncall-readonly
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: oncall-readonly-extra
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,8 @@
+PyAudio==0.2.14
+websockets==12.0
+janus==1.0.0
+redis==8.0.0
+numpy
+model2vec
+certifi
+python-dotenv
